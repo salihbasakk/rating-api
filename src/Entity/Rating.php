@@ -84,5 +84,4 @@ class Rating extends BaseEntity implements JsonSerializable
             'createdAt' => $this->getCreatedAt()
         ];
     }
-
 }
