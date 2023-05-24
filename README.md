@@ -34,6 +34,12 @@ docker exec -it php-app /bin/sh
 php bin/console doctrine:migrations:migrate
 ```
 
+## Testing
 
+```bash
+bin/phpunit
+```
+
+![](testResult.png)
 
 
