@@ -41,4 +41,32 @@ class RatingRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * @param Feedback $feedback
+     * @return int|mixed|string|null
+     * @throws NonUniqueResultException
+     */
+    public function getTotalRatingScoreCount(Feedback $feedback)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('SUM(r.score) as totalScore')
+            ->where('r.feedback =:feedback')
+            ->setParameter('feedback', $feedback)
+            ->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param Feedback $feedback
+     * @return int|mixed|string|null
+     * @throws NonUniqueResultException
+     */
+    public function getRatingCount(Feedback $feedback)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r) as count')
+            ->where('r.feedback =:feedback')
+            ->setParameter('feedback', $feedback)
+            ->getQuery()->getOneOrNullResult();
+    }
 }

@@ -42,6 +42,9 @@ class RatingService
     public function remove(int $id): void
     {
         $rating = $this->ratingRepository->findOneBy(['id' => $id]);
-        $this->ratingRepository->remove($rating, true);
+
+        if ($rating) {
+            $this->ratingRepository->remove($rating, true);
+        }
     }
 }

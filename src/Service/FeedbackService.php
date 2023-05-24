@@ -41,7 +41,10 @@ class FeedbackService
      */
     public function remove(int $id): void
     {
-        $rating = $this->feedbackRepository->findOneBy(['id' => $id]);
-        $this->feedbackRepository->remove($rating, true);
+        $feedback = $this->feedbackRepository->findOneBy(['id' => $id]);
+
+        if ($feedback) {
+            $this->feedbackRepository->remove($feedback, true);
+        }
     }
 }
